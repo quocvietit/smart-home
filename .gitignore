@@ -1,0 +1,9 @@
+*.crt
+*.key
+documents/
+tools/
+web/.idea/
+*.pyc
+web/logs/
+web/migrations/
+web/venv/
