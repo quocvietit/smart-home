@@ -251,3 +251,26 @@ ul.alert-dropdown {
     min-width: 50px;
     padding: 30px;
 }
+.device-name {
+    color: #1d2124;
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.device-info{
+    text-align: left;
+    margin: 20px;
+    margin-left: 100px;
+}
+
+.device-value {
+    color: #df8a13;
+    font-size: xx-large;
+}
+
+.device-disabled {
+    color: red;
+}
+.device-enabled {
+    color: #5cb85c;
+}
