@@ -6,6 +6,9 @@ INSERT INTO public.type(id, name, description, note, created, modified)
 	VALUES (3,'GAS', '', '', now(), now());
 INSERT INTO public.type(id, name, description, note, created, modified)
 	VALUES (4,'FLASH_LIGHT', '', '', now(), now());
+INSERT INTO public.type(id, name, description, note, created, modified)
+	VALUES (5,'HUMIDITY', '', '', now(), now());
+
 
 	
 INSERT INTO public.device(
@@ -20,4 +23,7 @@ INSERT INTO public.device(
 INSERT INTO public.device(
 	id, name, last_activity, is_connect, is_enable, type_id)
 	VALUES (4, 'FLASH_LIGHT_HOME', now(), true, false, 4);
+INSERT INTO public.device(
+	id, name, last_activity, is_connect, is_enable, type_id)
+	VALUES (5, 'HUMIDITY', now(), true, false, 5);
 	

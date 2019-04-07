@@ -21,11 +21,13 @@ class HistoryModel(db.Model):
 
     device_id = db.Column(db.Integer, db.ForeignKey('device.id'), nullable=False)
 
-    def __init__(self, id, name, description, note):
-        self.id = id
-        self.name = name
+    def __init__(self, value, time, device_id):
+        self.value = value
+        self.time = time
+        self.device_id = device_id
 
     def save(self):
+        print ("CO")
         db.session.add(self)
         db.session.commit()
 

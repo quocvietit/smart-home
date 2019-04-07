@@ -19,6 +19,9 @@ class Logger:
     LOGGING_FILE_NAME_FORMAT = "{}\\log-{}.txt"
 
 
+
+
+
 SECRET_KEY_LENGTH = 12
 
 # Device
@@ -26,3 +29,4 @@ TEMPERATURE = 'TEMPERATURE'
 LIGHT = 'LIGHT'
 GAS = 'GAS'
 FLASH_LIGHT = 'FLASH_LIGHT'
+
