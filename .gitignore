@@ -7,3 +7,9 @@ web/.idea/
 web/logs/
 web/migrations/
 web/venv/
+web/sh-service/venv/
+web/sh-service/.idea/
+aws/
+deploy/esp8266/test_leb/test_leb.ino
+web/sh-service/logs/
+web/sh-service/migrations/
