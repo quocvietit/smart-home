@@ -1,0 +1,52 @@
+<div class="containner">
+  <!-- Information Device -->
+  <div class="row">
+    <div class="col"></div>
+    <div class="col-6" style="text-align: center">Nhiệt độ</div>
+    <div class="col"></div>
+  </div>
+
+  <!-- Content -->
+  <div class="row">
+    <div class="col-1"></div>
+
+    <!-- Chart -->
+    <div class="col-7">
+      <line-chart-component [lineChartData]="chartData" [lineChartLabels]="chartLabels"></line-chart-component>
+    </div>
+
+    <!-- Info details -->
+    <div class="col info-detail">
+      <!-- Current date -->
+      <div class="row">
+        <div class="col-5">Ngày:</div>
+        <div class="col">{{currentDate}}</div>
+      </div>
+
+      <!-- Current time -->
+      <div class="row">
+        <div class="col-5">Thời gian:</div>
+        <div class="col">{{currentTime}}</div>
+      </div>
+
+      <!-- Current temperature -->
+      <div class="row">
+        <div class="col-5">Nhiệt độ: </div>
+        <div class="col">{{currentTemperature}}*C</div>
+      </div>
+
+      <!-- Average temperature -->
+      <div class="row">
+          <div class="col-5">Nhiệt độ trung bình: </div>
+          <div class="col">{{averageTemperature}}</div>
+        </div>
+      
+        <div class="row">
+            <div class="col-5">Trạng thái: </div>
+            <div class="col">{{averageTemperature}}</div>
+        </div>
+        <button mat-button mat-raised-button color="primary" (click)="pushOne()">Push</button>
+    </div>
+
+  </div>
+</div>
