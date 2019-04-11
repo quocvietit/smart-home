@@ -8,10 +8,11 @@ import {Component, OnInit, OnChanges, AfterViewInit} from '@angular/core';
 
 export class CategoryComponent implements OnInit, OnChanges, AfterViewInit{
     private links = [
-        { label: 'Smart Home', path: '/home'},
+        { label: 'Home', path: '/home'},
         { label: 'Temperature', path: '/temperature'},
-        { label: 'Humidity', path: '/page-not-found'},
-        { label: 'Monitor', path: '/page-not-found'}
+        { label: 'Humidity', path: '/humidity'},
+        { label: 'Monitor', path: '/monitor'},
+        { label: 'About', path: '/about'}
     ]
     
     constructor(){};

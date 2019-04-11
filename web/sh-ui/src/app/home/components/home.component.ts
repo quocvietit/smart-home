@@ -5,6 +5,7 @@ import { AnalyticsService } from '../../common/services/analytics.service';
 import { LineChartComponent } from '../../common/components/charts/line-chart.component';
 import { ChartDataSets } from 'chart.js';
 import { Label } from 'ng2-charts';
+import { InfoHomeComponent } from '../../common/components/info-home/info-home.component';
 
 @Component({
     selector: 'home-component',
@@ -19,12 +20,11 @@ export class HomeComponent implements OnInit, OnChanges, AfterViewInit{
     ];
     chartLabels: Label[] = ['22.10', '22.11', '22.12', '22.13', '22.14', '22.15', '22.16', '22.17', '22.18', '22.19'];
 
-    currentDate = this.timeChartFormat.transFormDateToYearAndMonthAndDay(new Date());
-    currentTime = this.timeChartFormat.transFormDateToMinutesAndSecond(new Date());
     currentTemperature = this.chartData[0].data[9];
-    averageTemperature = this.analyticService.calAverage(this.chartData[0].data);
+    currentHumidity = this.chartData[1].data[9];
 
     @ViewChild("LineChartComponent") chart: LineChartComponent;
+    @ViewChild("InfoHomeComponent") infoHome: InfoHomeComponent;
 
     constructor(
         private stringFormat: StringFormatPipe,
@@ -65,8 +65,6 @@ export class HomeComponent implements OnInit, OnChanges, AfterViewInit{
 
 
     public pushOne() {
-        this.currentDate = this.timeChartFormat.transFormDateToYearAndMonthAndDay(new Date());
-        this.currentTime = this.timeChartFormat.transFormDateToHoursAndMinutesAndSecond(new Date());
         this.chartLabels.shift();
         this.chartLabels.push(this.timeChartFormat.transFormDateToHoursAndMinutesAndSecond(new Date()).toString());
         this.chartData.forEach((x, i) => {
@@ -75,8 +73,8 @@ export class HomeComponent implements OnInit, OnChanges, AfterViewInit{
             data.shift();
             data.push(num);
         });
-        this.averageTemperature = this.analyticService.calAverage(this.chartData[0].data as number[]);
         this.currentTemperature = this.chartData[0].data[9];
+        this.currentHumidity = this.chartData[1].data[9];
         this.chart.update();
 
     }

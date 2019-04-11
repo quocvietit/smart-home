@@ -1,5 +1,4 @@
-<!-- Current date -->
-<div class="info-detail">
+<div class="info-home">
   <div class="row">
     <div class="col-5">Ngày:</div>
     <div class="col sh-value">{{currentDate}}</div>
@@ -12,15 +11,13 @@
   </div>
 
   <!-- Current value-->
-  <div class="row">
-    <div class="col-5">{{device}}: </div>
-    <div class="col sh-value">{{currentValue}}<span [innerHTML]="deviceMeasure"></span></div>
+  <div class="row" >
+    <div class="col-5">{{constants.DEVICE.TEMPERATURE}}: </div>
+    <div class="col sh-value">{{currentTemperature}}&#176;C</div>
   </div>
-
-  <!-- Average value -->
-  <div class="row">
-    <div class="col-5">{{device}} trung bình: </div>
-    <div class="col sh-value">{{averageValue}}</div>
+  <div class="row" >
+    <div class="col-5">{{constants.DEVICE.HUMIDITY}}: </div>
+    <div class="col sh-value">{{currentHumidity}}&#37;</div>
   </div>
 
   <div class="row">

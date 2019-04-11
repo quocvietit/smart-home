@@ -2,21 +2,34 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
-html, body {
-    height: 100%;
-    background-color: #FAFAFA;
-    font-size: 120%;
+html,
+body {
+  height: 100%;
+  background-color: #FAFAFA;
+  font-size: 120%;
 }
 
-.row{
-    margin-right: 0px;
+canvas {
+  background: #fff;
 }
 
-.info-detail{
-    text-align: left;
-    margin-top: 50px;
+.row {
+  margin-right: 0px;
+  margin-top: 10px;
 }
 
-.info-detail .row{
-    margin-bottom: 20px;
+.sh-title {
+  text-align: center;
+}
+
+.sh-title-header {
+  color: green;
+  font-size: 180%;
+  font: 2em sans-serif;
+}
+
+.sh-sologan {
+  color: greenyellow;
+  font: 1em sans-serif;
+  font-style: italic;
 }

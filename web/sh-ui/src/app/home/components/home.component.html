@@ -1,25 +1,33 @@
-<!-- The content below is only a placeholder and can be replaced.-->
-<!-- <div >
-    <div style="display: block">
-      <canvas baseChart
-              [datasets]="lineChartData"
-              [labels]="lineChartLabels"
-              [options]="lineChartOptions"
-              [colors]="lineChartColors"
-              [legend]="lineChartLegend"
-              [chartType]="lineChartType"
-              [plugins]="lineChartPlugins"
-              (chartHover)="chartHovered($event)"
-              (chartClick)="chartClicked($event)">
-      </canvas>
+<div class="container-fluid">
+  <div class="row justify-content-md-center">
+    <div class="col col-lg-2"></div>
+    <div class="col-md-auto sh-title">
+        <title-component></title-component>
     </div>
-    <button mat-button mat-raised-button color="primary" (click)="pushOne()">Push</button>
+    <div class="col col-lg-2"></div>
   </div>
-  
-  
-  <router-outlet></router-outlet>
-    -->
 
-    <div>
-      this is the Home
+  <!-- Information Home -->
+  <div class="row">
+    <div class="col col-lg-2"></div>
+    <div class="col-md-auto">
+      <info-home-component [currentTemperature]="currentTemperature" [currentHumidity]="currentHumidity"
+        [isNightMode]="false">
+      </info-home-component>
     </div>
+    <div class="col col-lg-2"></div>
+  </div>
+
+  <!-- Content -->
+  <div class="row justify-content-md-center">
+    <div class="col-sm"></div>
+    <div class="col-sm-7">
+      <!-- Chart -->
+      <line-chart-component [lineChartData]="chartData" [lineChartLabels]="chartLabels">
+      </line-chart-component>
+    </div>
+    <div class="col-sm"></div>
+  </div>
+
+  <button mat-button mat-raised-button color="primary" (click)="pushOne()">Push</button>
+</div>

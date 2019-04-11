@@ -1,5 +1,21 @@
 .sh-nav{
-    background-color: whitesmoke;
+    background-color: #FFFFFF;
     color:dimgray;
-    font: bold;
+    min-height: 80px;
+}
+
+.sh-nav a{
+    text-decoration: none;
+}
+.sh-nav-text{
+    font-size: 150%;
+    color: darkgrey;
+}
+
+.sh-content{
+    margin: 0px 120px;
+}
+
+.mat-tab-link{
+    height: 80px;
 }

@@ -19,11 +19,22 @@ export class LineChartComponent implements OnInit, OnChanges, OnDestroy, AfterVi
             xAxes: [{
                 id: 'x-axis-0',
                 position: 'bottom',
+                gridLines: {
+                    zeroLineColor: "transparent"
+                },
                 ticks: {
                     min: 0,
-                    // maxRotation: 10,
-                    // maxTicksLimit: 10,
-                    // suggestedMax: 10
+                    maxRotation: 10,
+                    maxTicksLimit: 10,
+                    suggestedMax: 10,
+                    padding: 10,
+                    fontColor: "rgb(61, 61, 62)",
+                    fontStyle: "bold"
+                },
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Time Of Day',
+                    fontSize: 20
                 }
             }],
             yAxes: [
@@ -32,9 +43,15 @@ export class LineChartComponent implements OnInit, OnChanges, OnDestroy, AfterVi
                     position: 'left',
                     ticks: {
                         beginAtZero: false,
-                        fontColor: 'green',
                         min: -20,
-                        max: 50
+                        max: 50,
+                        padding: 10,
+                        fontColor: 'rgb(61, 61, 62)',
+                        fontStyle: "bold"
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Value'
                     }
                 }
                 // },
@@ -53,21 +70,21 @@ export class LineChartComponent implements OnInit, OnChanges, OnDestroy, AfterVi
             ]
         },
         annotation: {
-            // annotations: [
-            //   {
-            //     type: 'line',
-            //     mode: 'vertical',
-            //     scaleID: 'x-axis-0',
-            //     value: 'March',
-            //     borderColor: 'orange',
-            //     borderWidth: 2,
-            //     label: {
-            //       enabled: true,
-            //       fontColor: 'orange',
-            //       content: 'LineAnno'
-            //     }
-            //   },
-            // ],
+            annotations: [
+                {
+                    type: 'line',
+                    mode: 'vertical',
+                    scaleID: 'x-axis-0',
+                    value: 'March',
+                    borderColor: 'orange',
+                    borderWidth: 2,
+                    // label: {
+                    //   enabled: true,
+                    //   fontColor: 'orange',
+                    //   content: 'LineAnno'
+                    // }
+                },
+            ],
         },
     };
 
@@ -75,30 +92,32 @@ export class LineChartComponent implements OnInit, OnChanges, OnDestroy, AfterVi
         { // grey
             backgroundColor: 'rgba(148,159,177,0.2)',
             borderColor: 'rgba(148,159,177,1)',
-            pointBackgroundColor: 'rgba(148,159,177,1)',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+            pointBackgroundColor: '#80B6F4',
+            pointBorderColor: '#80B6F4',
+            pointHoverBackgroundColor: '#80B6F4',
+            pointHoverBorderColor: 'rgba(148,159,177,0.8)',
+            pointBorderWidth: 2,
+            pointHoverRadius: 10,
+            pointHoverBorderWidth: 1,
+            pointRadius: 3,
+            borderWidth: 4,
         },
         { // dark grey
             backgroundColor: 'rgba(77,83,96,0.2)',
             borderColor: 'rgba(77,83,96,1)',
-            pointBackgroundColor: 'rgba(77,83,96,1)',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgba(77,83,96,1)'
-        },
-        { // red
-            backgroundColor: 'rgba(255,0,0,0.3)',
-            borderColor: 'red',
-            pointBackgroundColor: 'rgba(148,159,177,1)',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+            pointBackgroundColor: '#80B6F4',
+            pointBorderColor: '#80B6F4',
+            pointHoverBackgroundColor: '#80B6F4',
+            pointHoverBorderColor: 'rgba(148,159,177,0.8)',
+            pointBorderWidth: 2,
+            pointHoverRadius: 10,
+            pointHoverBorderWidth: 1,
+            pointRadius: 3,
+            borderWidth: 4,
         }
     ];
 
-    private lineChartLegend = false;
+    private lineChartLegend = true;
     private lineChartType = 'line';
     private lineChartPlugins = [pluginAnnotations];
 
@@ -114,7 +133,7 @@ export class LineChartComponent implements OnInit, OnChanges, OnDestroy, AfterVi
 
     ngAfterViewInit() { }
 
-    public update(){
+    public update() {
         this.chart.update();
     }
 

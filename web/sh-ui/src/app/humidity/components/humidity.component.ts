@@ -10,21 +10,21 @@ import { AnalyticsService } from '../../common/services/analytics.service';
 import { InfoDetailComponent } from '../../common/components/info-detail/info-detail.component';
 
 @Component({
-    selector: 'temperature-component',
-    templateUrl: './temperature.component.html',
-    styleUrls: ['./temperature.component.css']
+    selector: 'humidity-component',
+    templateUrl: './humidity.component.html',
+    styleUrls: ['./humidity.component.css']
 })
 
-export class TemperatureComponent implements OnInit, OnChanges, AfterViewInit {
+export class HumidityComponent implements OnInit, OnChanges, AfterViewInit {
     chartData: ChartDataSets[] = [
         { data: [17, 20, 21, 25, 26, 26, 26, 26, 26, 26], label: 'Temperature' },
     ];
     chartLabels: Label[] = ['22.10', '22.11', '22.12', '22.13', '22.14', '22.15', '22.16', '22.17', '22.18', '22.19'];
 
 
-    currentTemperature = this.chartData[0].data[9].toString();
-    averageTemperature = this.analyticService.calAverage(this.chartData[0].data);
-    statusTemperature = "Ahihi";
+    currentHumidity = this.chartData[0].data[9].toString();
+    averageHumidity = this.analyticService.calAverage(this.chartData[0].data);
+    statusHumidity = "Ahihi";
 
     @ViewChild("LineChartComponent") chart: LineChartComponent;
     @ViewChild("InfoDetailComponent") infoDetail: InfoDetailComponent;
@@ -76,8 +76,8 @@ export class TemperatureComponent implements OnInit, OnChanges, AfterViewInit {
             data.shift();
             data.push(num);
         });
-        this.averageTemperature = this.analyticService.calAverage(this.chartData[0].data as number[]);
-        this.currentTemperature = this.chartData[0].data[9].toString();
+        this.averageHumidity = this.analyticService.calAverage(this.chartData[0].data as number[]);
+        this.currentHumidity = this.chartData[0].data[9].toString();
         
        // this.chart.update();
 

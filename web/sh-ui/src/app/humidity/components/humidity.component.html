@@ -2,7 +2,7 @@
   <!-- Information Device -->
   <div class="row">
     <div class="col"></div>
-    <div class="col-6" style="text-align: center">Nhiệt độ</div>
+    <div class="col-6" style="text-align: center">Độ ẩm</div>
     <div class="col"></div>
   </div>
 
@@ -12,20 +12,14 @@
 
     <!-- Chart -->
     <div class="col-7">
-      <line-chart-component 
-        [lineChartData]="chartData" 
-        [lineChartLabels]="chartLabels">
+      <line-chart-component [lineChartData]="chartData" [lineChartLabels]="chartLabels">
       </line-chart-component>
     </div>
 
     <!-- Info details -->
     <div class="col">
-      <info-detail-component
-        [currentValue] = "currentTemperature"
-        [averageValue] = "averageTemperature"
-        [isTemperature] = "true"
-        [status] = "statusTemperature"
-      ></info-detail-component>
+      <info-detail-component [currentValue]="currentHumidity" [averageValue]="averageHumidity" [isTemperature]="false"
+        [status]="statusHumidity"></info-detail-component>
     </div>
 
   </div>

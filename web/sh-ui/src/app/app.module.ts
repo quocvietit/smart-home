@@ -1,18 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
-import { ChartsModule } from 'ng2-charts';
-
-import { MatTabsModule } from '@angular/material/tabs';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
 import { CategoryComponent } from './common/components/category/category.component';
 import { StringFormatPipe } from './common/pipe/string-format.pipe';
 import { TimeChartFormatPipe } from './common/pipe/time-chart-format.pipe';
 import { AnalyticsService } from './common/services/analytics.service';
+import { MaterialModule } from './material.module';
 
 
 @NgModule({
@@ -25,9 +20,8 @@ import { AnalyticsService } from './common/services/analytics.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ChartsModule,
-    MatTabsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   entryComponents: [CategoryComponent],
   providers: [
@@ -43,13 +37,6 @@ import { AnalyticsService } from './common/services/analytics.service';
 })
 
 export class AppModule {
-  links = [
-    {
-      path: '/home',
-      label: 'Home'
-
-    }
-  ]
 }
 
 
