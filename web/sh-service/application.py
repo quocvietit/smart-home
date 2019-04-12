@@ -8,13 +8,11 @@ from utils import constants
 from utils.logger_initializer import initialize_logger
 
 
-from views.errors.page_not_found import page_not_found
-
 from flask_sqlalchemy import SQLAlchemy
 from flask_mqtt import Mqtt
 
 app = Flask(__name__)
-app.config['MQTT_BROKER_URL'] = '192.168.43.221'  # use the free broker from HIVEMQ
+app.config['MQTT_BROKER_URL'] = 'localhost'  # use the free broker from HIVEMQ
 app.config['MQTT_BROKER_PORT'] = 1883  # default port for non-tls connection
 app.config['MQTT_CLIENT_ID'] = 'raspberry'
 app.config['MQTT_USERNAME'] = 'pi'  # set the username here if you need authentication for the broker
@@ -41,7 +39,7 @@ mqtt = Mqtt(app)
 
 POSTGRES = {
     'user': 'postgres',
-    'pw': 'smarthome@2019',
+    'pw': 'admin',
     'db': 'smarthome',
     'host': 'localhost',
     'port': '5432',
@@ -75,7 +73,8 @@ from services.history_services import HistoryService
 
 @mqtt.on_connect()
 def handle_connect(client, userdata, flags, rc):
-    pass
+    print ("AHihi")
+
 
 
 @mqtt.on_message()

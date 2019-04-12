@@ -63,11 +63,11 @@ def home_view():
 
         data['gas.last_activity'] = str(gas_device.last_activity)[0:19]
 
-        return render_template('home/index.html', data=data)
+        return jsonify(data)
     except:
         pass
 
-    return render_template('home/index.html', data=data)
+    return jsonify(data)
 
 
 @home.route('/tem')
