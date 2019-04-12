@@ -27,7 +27,6 @@ class HistoryModel(db.Model):
         self.device_id = device_id
 
     def save(self):
-        print ("CO")
         db.session.add(self)
         db.session.commit()
 

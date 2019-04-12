@@ -17,5 +17,5 @@ class HistoryService:
 
     @staticmethod
     def save(value, id):
-        historyModel = HistoryModel(value, datetime.datetime.now(), id)
-        historyModel.save()
+        history_model = HistoryModel(value, datetime.datetime.now(), id)
+        history_model.save()
