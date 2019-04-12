@@ -8,6 +8,7 @@ import { StringFormatPipe } from './common/pipe/string-format.pipe';
 import { TimeChartFormatPipe } from './common/pipe/time-chart-format.pipe';
 import { AnalyticsService } from './common/services/analytics.service';
 import { MaterialModule } from './material.module';
+import { AppSocketIOModule } from './app-socketio.module';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { MaterialModule } from './material.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    AppSocketIOModule,
     BrowserAnimationsModule,
     MaterialModule
   ],

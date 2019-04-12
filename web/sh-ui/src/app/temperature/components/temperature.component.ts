@@ -8,6 +8,9 @@ import { StringFormatPipe } from '../../common/pipe/string-format.pipe';
 import { TimeChartFormatPipe } from '../../common/pipe/time-chart-format.pipe';
 import { AnalyticsService } from '../../common/services/analytics.service';
 import { InfoDetailComponent } from '../../common/components/info-detail/info-detail.component';
+import { Observable } from 'rxjs';
+import { Temperature } from '../../common/models/temperature.model';
+import { TemperatureService } from '../services/temperature.service';
 
 @Component({
     selector: 'temperature-component',
@@ -26,20 +29,22 @@ export class TemperatureComponent implements OnInit, OnChanges, AfterViewInit {
     averageTemperature = this.analyticService.calAverage(this.chartData[0].data);
     statusTemperature = "Ahihi";
 
+    temperature: Observable<String>;
+
     @ViewChild("LineChartComponent") chart: LineChartComponent;
     @ViewChild("InfoDetailComponent") infoDetail: InfoDetailComponent;
 
     constructor(
         private stringFormat: StringFormatPipe,
         private timeChartFormat: TimeChartFormatPipe,
-        private analyticService: AnalyticsService
+        private analyticService: AnalyticsService,
+        private service: TemperatureService
     ) { }
 
     ngOnInit() {
     }
 
     ngOnChanges(){
-
     }
 
     ngAfterViewInit(){}

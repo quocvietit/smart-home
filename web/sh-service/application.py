@@ -75,7 +75,7 @@ def handle_mqtt_message(client, userdata, message):
         payload=message.payload.decode()
     )
     print(data)
-    socketio.emit('mqtt_message', data=data)
+    socketio.emit('temperature', data=data)
     if data['topic'] == MQTTConfig.TOPIC_TEMPERATURE:
         save_device(data['payload'], 1)
     elif data['topic'] == MQTTConfig.TOPIC_LIGHT:
@@ -112,3 +112,4 @@ def subscribe_topics():
 if __name__ == '__main__':
     subscribe_topics()
     app.run(debug=True, host=os.getenv('IP', '0.0.0.0'), port=int(os.getenv('PORT', 80)))
+    socketio.run(app)
