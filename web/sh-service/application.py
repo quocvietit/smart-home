@@ -8,7 +8,7 @@ import json
 from utils.constants import *
 from utils.logger_initializer import initialize_logger
 
-from flask import Flask
+from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_mqtt import Mqtt, MQTT_LOG_ERR
 from flask_socketio import SocketIO
@@ -53,6 +53,18 @@ app.register_blueprint(temperature)
 
 from services.history_services import HistoryService
 
+clients = []
+
+@socketio.on('connect')
+def handle_connect():
+    print('Client connected')
+    clients.append(request.sid)
+
+@socketio.on('disconnect')
+def handle_disconnect():
+    print('Client disconnected')
+    clients.remove(request.sid)
+
 @socketio.on('publish')
 def handle_publish(json_str):
     data = json.loads(json_str)
@@ -75,7 +87,7 @@ def handle_mqtt_message(client, userdata, message):
         payload=message.payload.decode()
     )
     print(data)
-    socketio.emit('temperature', data=data)
+    socketio.emit('temperature', data=data['payload']);
     if data['topic'] == MQTTConfig.TOPIC_TEMPERATURE:
         save_device(data['payload'], 1)
     elif data['topic'] == MQTTConfig.TOPIC_LIGHT:

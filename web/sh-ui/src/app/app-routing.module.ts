@@ -13,6 +13,7 @@ import { MaterialModule } from './material.module';
 import { InfoHomeComponent } from './common/components/info-home/info-home.component';
 import { TitleComponent } from './common/components/title/title.component';
 import { MonitorComponent } from './monitor/components/monitor.component';
+import { TemperatureService } from './temperature/services/temperature.service';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -49,6 +50,7 @@ const routes: Routes = [
       routes
     )
   ],
+  providers: [TemperatureService],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

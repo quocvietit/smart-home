@@ -7,12 +7,12 @@ export class TemperatureService {
 
     constructor(private socket: Socket) { }
 
-    sendMessage(msg: string) {
-        this.socket.emit("message", msg);
-    }
+    // sendMessage(msg: string) {
+    //     this.socket.emit("message", msg);
+    // }
 
     getMessage() {
         return this.socket
-            .fromEvent("message").subscribe(data => data)
+            .fromEvent("temperature").pipe(map(data => data));
     }
 }

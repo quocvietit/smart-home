@@ -24,7 +24,7 @@ export class TemperatureComponent implements OnInit, OnChanges, AfterViewInit {
     ];
     chartLabels: Label[] = ['22.10', '22.11', '22.12', '22.13', '22.14', '22.15', '22.16', '22.17', '22.18', '22.19'];
 
-
+    data = this.chartData[0].data as number[];
     currentTemperature = this.chartData[0].data[9].toString();
     averageTemperature = this.analyticService.calAverage(this.chartData[0].data);
     statusTemperature = "Ahihi";
@@ -39,15 +39,28 @@ export class TemperatureComponent implements OnInit, OnChanges, AfterViewInit {
         private timeChartFormat: TimeChartFormatPipe,
         private analyticService: AnalyticsService,
         private service: TemperatureService
-    ) { }
+    ) {
+
+    }
 
     ngOnInit() {
+        this.service.getMessage().subscribe(data => {
+            this.currentTemperature = data.toString();
+            this.chartLabels.shift();
+            this.chartLabels.push(this.timeChartFormat.transFormDateToHoursAndMinutesAndSecond(new Date()).toString());
+            this.data.shift();
+            this.data.push(Number(this.currentTemperature));
+            this.averageTemperature = this.analyticService.calAverage(this.chartData[0].data as number[]);
+        }, err => {
+            console.log("err: " + err);
+        });
     }
 
-    ngOnChanges(){
+    ngOnChanges() {
+
     }
 
-    ngAfterViewInit(){}
+    ngAfterViewInit() { }
 
     public randomize(): void {
         for (let i = 0; i < this.chartData.length; i++) {
@@ -83,8 +96,8 @@ export class TemperatureComponent implements OnInit, OnChanges, AfterViewInit {
         });
         this.averageTemperature = this.analyticService.calAverage(this.chartData[0].data as number[]);
         this.currentTemperature = this.chartData[0].data[9].toString();
-        
-       // this.chart.update();
+
+        // this.chart.update();
 
     }
 
