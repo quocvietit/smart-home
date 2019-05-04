@@ -19,14 +19,14 @@ socketio = SocketIO()
 try:
     socketio.init_app(app)
 except Exception as ex:
-    logging.error(f"Init SocketIO Error: {ex}")
+    logging.error('Init SocketIO Error: {}'.format( ex))
 
 
 @socketio.on('connect')
 def handle_connect():
-    logging.info(f'Client connected: {request.sid}')
+    logging.info('Client connected: {}'.format(request.sid))
 
 
 @socketio.on('disconnect')
 def handle_disconnect():
-    logging.info(f'Client disconnected: {request.sid}')
+    logging.info('Client disconnected: {}'.format(request.sid))

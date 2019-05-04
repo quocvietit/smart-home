@@ -20,7 +20,7 @@ mqtt = Mqtt()
 try:
     mqtt.init_app(app)
 except Exception as ex:
-    logging.error(f"Init MQTT Error: {ex}")
+    logging.error("Init MQTT Error: {}".format(ex))
 
 
 @mqtt.on_connect()
