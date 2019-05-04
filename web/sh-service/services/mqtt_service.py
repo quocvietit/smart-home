@@ -25,14 +25,14 @@ class MQTTService:
         try:
             mqtt.subscribe(topic)
         except Exception as ex:
-            logging.error(f"Subscribe Error: {ex}")
+            logging.error("Subscribe Error: {}".format(ex))
 
     @staticmethod
     def unsubscribe(topic):
         try:
             mqtt.unsubscribe(topic)
         except Exception as ex:
-            logging.error(f"Unsubscribe Error: {ex}")
+            logging.error("Unsubscribe Error: {}".format(ex))
 
     @staticmethod
     def handle_data_topic(topic, value):
