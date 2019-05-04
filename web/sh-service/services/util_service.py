@@ -24,4 +24,4 @@ class UtilService:
                 try:
                     MQTTService.subscribe(device.mqtt_topic)
                 except Exception as ex:
-                    logging.error("Subscribed error: ", ex)
+                    logging.error('Subscribed error: {}'.format(ex))
