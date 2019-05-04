@@ -70,4 +70,4 @@ def get_date_version():
     month = "{}{}".format(date.month // 10, date.month % 10)
     year = str(date.year)
 
-    return "-".join([day, month, year])
+    return "-".join([month, day, year])

@@ -13,6 +13,9 @@ import { MaterialModule } from './material.module';
 import { InfoHomeComponent } from './common/components/info-home/info-home.component';
 import { TitleComponent } from './common/components/title/title.component';
 import { MonitorComponent } from './monitor/components/monitor.component';
+import { DataTableComponent } from './common/components/data-table/data-table.component';
+import { SensorInfoComponent } from './common/components/sensor-info/sensor-info.component';
+import { SocketService } from './common/services/socket.service';
 import { TemperatureService } from './temperature/services/temperature.service';
 
 const routes: Routes = [
@@ -41,7 +44,9 @@ const routes: Routes = [
     LineChartComponent,
     InfoDetailComponent,
     InfoHomeComponent,
-    TitleComponent
+    TitleComponent,
+    DataTableComponent,
+    SensorInfoComponent
   ],
   imports: [
     ChartsModule,
@@ -50,7 +55,7 @@ const routes: Routes = [
       routes
     )
   ],
-  providers: [TemperatureService],
+  providers: [SocketService, TemperatureService],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

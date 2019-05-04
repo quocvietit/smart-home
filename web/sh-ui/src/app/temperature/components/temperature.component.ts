@@ -10,7 +10,7 @@ import { AnalyticsService } from '../../common/services/analytics.service';
 import { InfoDetailComponent } from '../../common/components/info-detail/info-detail.component';
 import { Observable } from 'rxjs';
 import { Temperature } from '../../common/models/temperature.model';
-import { TemperatureService } from '../services/temperature.service';
+import { SocketService } from 'src/app/common/services/socket.service';
 
 @Component({
     selector: 'temperature-component',
@@ -27,7 +27,7 @@ export class TemperatureComponent implements OnInit, OnChanges, AfterViewInit {
     data = this.chartData[0].data as number[];
     currentTemperature = this.chartData[0].data[9].toString();
     averageTemperature = this.analyticService.calAverage(this.chartData[0].data);
-    statusTemperature = "Ahihi";
+    statusTemperature = "Bình Thường";
 
     temperature: Observable<String>;
 
@@ -38,7 +38,7 @@ export class TemperatureComponent implements OnInit, OnChanges, AfterViewInit {
         private stringFormat: StringFormatPipe,
         private timeChartFormat: TimeChartFormatPipe,
         private analyticService: AnalyticsService,
-        private service: TemperatureService
+        private service: SocketService
     ) {
 
     }

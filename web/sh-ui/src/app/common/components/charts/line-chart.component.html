@@ -1,6 +1,6 @@
 <div class="row">
   <div style="display: block" class="col">
-    <canvas baseChart height="40vh" width="80vw" [datasets]="lineChartData" [labels]="lineChartLabels"
+    <canvas baseChart height="600px" width="900px" [datasets]="lineChartData" [labels]="lineChartLabels"
       [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType"
       [plugins]="lineChartPlugins" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
     </canvas>

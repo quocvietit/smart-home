@@ -1,6 +1,7 @@
 import {Component, OnInit, OnChanges, AfterViewInit, Input} from '@angular/core';
 import { Constants } from '../../utilities/constants';
 import { TimeChartFormatPipe } from '../../pipe/time-chart-format.pipe';
+import { Temperature } from '../../models/temperature.model';
 
 @Component({
     selector: 'info-home-component',
@@ -15,10 +16,18 @@ export class InfoHomeComponent implements OnInit, OnChanges, AfterViewInit{
     currentDate: String;
     currentTime: String;
     date: Date = new Date();
-    @Input() currentTemperature: number;
-    @Input() currentHumidity: number;
-    @Input() isNightMode: boolean;
+    room: String = "PHÒNG KHÁCH";
+    temperatureName: String = "Nhiệt độ";
+    humidityName: String = "Độ ẩm";
+    lightName: String = "Ánh sáng";
+    gasName: String = "Khí ga";
+    flashLightName: String = "Bóng đèn";
 
+    @Input() temperatureValue: String;
+    @Input() humidityValue: String;
+    @Input() lightValue: String;
+    @Input() gasValue: String;
+    @Input() flashLightValue: String;
 
     constructor(private timeChartFormat: TimeChartFormatPipe){};
 

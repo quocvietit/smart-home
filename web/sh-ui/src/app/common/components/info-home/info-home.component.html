@@ -1,27 +1,33 @@
 <div class="info-home">
-  <div class="row">
-    <div class="col-5">Ngày:</div>
-    <div class="col sh-value">{{currentDate}}</div>
-  </div>
-
-  <!-- Current time -->
-  <div class="row">
-    <div class="col-5">Thời gian:</div>
-    <div class="col sh-value">{{currentTime}}</div>
-  </div>
-
-  <!-- Current value-->
-  <div class="row" >
-    <div class="col-5">{{constants.DEVICE.TEMPERATURE}}: </div>
-    <div class="col sh-value">{{currentTemperature}}&#176;C</div>
-  </div>
-  <div class="row" >
-    <div class="col-5">{{constants.DEVICE.HUMIDITY}}: </div>
-    <div class="col sh-value">{{currentHumidity}}&#37;</div>
+  <div class="row room-name">
+    <div>{{room}}:</div>
   </div>
 
   <div class="row">
-    <div class="col-5">Trạng thái: </div>
-    <div class="col sh-value">{{status}}</div>
+    <sensor-info-component
+    [name]="temperatureName" 
+    [status]="temperatureValue"
+    ></sensor-info-component>
+
+    <sensor-info-component
+    [name]="humidityName" 
+    [status]="humidityValue"
+    ></sensor-info-component>
+
+    <sensor-info-component
+    [name]="lightName" 
+    [status]="lightValue"
+    ></sensor-info-component>
+
+    <sensor-info-component
+    [name]="gasName" 
+    [status]="gasValue"
+    ></sensor-info-component>
+
+    <sensor-info-component
+    [name]="flashLightName" 
+    [status]="flashLightValue"
+    ></sensor-info-component>
   </div>
+
 </div>

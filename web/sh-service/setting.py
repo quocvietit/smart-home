@@ -6,9 +6,9 @@
    - Copy right @SmartHome
 ==============================================================
 """
-import os
 
-class MQTTConfig:
+
+class MQTTConfiguration:
     CLIENT_NAME = "Raspberry-Server-1"
     SERVER = 'localhost'
     PORT = 1883
@@ -16,15 +16,16 @@ class MQTTConfig:
     PASSWORD = '123'
     KEEP_ALIVE = 60
     TLS_ENABLED = False
-    TOPIC_TEMPERATURE = "home/room/temperature"
-    TOPIC_HUMIDITY = "home/room/humidity"
-    TOPIC_LIGHT = "home/room/light"
-    TOPIC_GAS = "home/room/gas"
-    TOPIC_FLASH_LIGHT = "home/room/flash_light"
+    TOPIC_TEMPERATURE = "LIVINGROOM/TEMPERATURE"
+    TOPIC_HUMIDITY = "LIVINGROOM/HUMIDITY"
+    TOPIC_LIGHT = "LIVINGROOM/LIGHT"
+    TOPIC_GAS = "LIVINGROOM/GAS"
+    TOPIC_FLASH_LIGHT = "LIVINGROOM/FLASH_LIGHT"
 
-class DatabaseConfig:
+
+class DatabaseConfiguration:
     USER_NAME = 'postgres'
-    PASSWORD = 'admin'
+    PASSWORD = 'smarthome@2019'
     NAME = 'smarthome'
     HOST = 'localhost'
     PORT = 5432
@@ -38,6 +39,3 @@ class DatabaseConfig:
     URI = 'postgresql://%(user)s:%(pw)s@%(host)s:%(port)s/%(db)s' % POSTGRES
     TRACK_MODIFICATION = False
     ECHO = False
-
-
-

@@ -1,47 +1,57 @@
-import { Injectable } from '@angular/core';
-import * as io from 'socket.io-client';
-import { Observable } from 'rxjs';
-import * as Rx from 'rxjs';
-import { environment } from '../../../environments/environment';
+// import { Injectable } from '@angular/core';
+// import * as io from 'socket.io-client';
+// import { Observable } from 'rxjs';
+// import * as Rx from 'rxjs';
+// import { environment } from '../../../environments/environment';
+// import { map } from 'rxjs/operators';
 
-@Injectable()
-export class WebsocketService {
+// @Injectable()
+// export class WebsocketService {
 
-  // Our socket connection
-  private socket;
+//   // Our socket connection
+//   private socket;
 
-  constructor() { }
+//   constructor() { }
 
-  connect(): Rx.Subject<MessageEvent> {
-    // If you aren't familiar with environment variables then
-    // you can hard code `environment.ws_url` as `http://localhost:5000`
-    this.socket = io(environment.ws_url);
+//   connect(): Rx.Subject<MessageEvent> {
+//     // If you aren't familiar with environment variables then
+//     // you can hard code `environment.ws_url` as `http://localhost:5000`
+//     this.socket = io(environment.ws_url);
 
-    // We define our observable which will observe any incoming messages
-    // from our socket.io server.
-    let observable = new Observable(observer => {
-        this.socket.on('temperature', (data) => {
-          console.log("Received message from Websocket Server")
-          observer.next(data);
-          console.log(data);
-        })
-        return () => {
-          this.socket.disconnect();
-        }
-    });
+//     // We define our observable which will observe any incoming messages
+//     // from our socket.io server.
+//     let observable = new Observable(observer => {
+//       this.socket.on('temperature', (data) => {
+//         console.log("Received message from Websocket Server")
+//         observer.next(data);
+//         console.log(data);
+//       })
+//       return () => {
+//         this.socket.disconnect();
+//       }
+//     });
 
-    // We define our Observer which will listen to messages
-    // from our other components and send messages back to our
-    // socket server whenever the `next()` method is called.
-    let observer = {
-        next: (data: Object) => {
-            this.socket.emit('temperature', JSON.stringify(data));
-        },
-    };
+//     // We define our Observer which will listen to messages
+//     // from our other components and send messages back to our
+//     // socket server whenever the `next()` method is called.
+//     let observer = {
+//       next: (data: Object) => {
+//         this.socket.emit('temperature', JSON.stringify(data));
+//       },
+//     };
 
-    // we return our Rx.Subject which is a combination
-    // of both an observer and observable.
-    return Rx.Subject.create(observer, observable);
-  }
+//     // we return our Rx.Subject which is a combination
+//     // of both an observer and observable.
+//     return Rx.Subject.create(observer, observable);
+//   }
 
-}
+//   sendMessage(topic: string, msg: string) {
+//     this.socket.emit(topic, msg);
+//   }
+
+//   getMessage(topic: string) {
+//     return this.socket
+//       .fromEvent(topic).pipe(map(data => data));
+//   }
+
+// }
