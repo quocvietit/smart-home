@@ -20,7 +20,7 @@ export class InfoHomeComponent implements OnInit, OnChanges, AfterViewInit{
     temperatureName: String = "Nhiệt độ";
     humidityName: String = "Độ ẩm";
     lightName: String = "Ánh sáng";
-    gasName: String = "Khí ga";
+    gasName: String = "Khí GAS";
     flashLightName: String = "Bóng đèn";
 
     @Input() temperatureValue: String;

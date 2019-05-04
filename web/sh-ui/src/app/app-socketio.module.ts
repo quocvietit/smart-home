@@ -1,7 +1,7 @@
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { NgModule } from '@angular/core';
 
-const config: SocketIoConfig = { url: 'http://localhost:80', options: {} };
+const config: SocketIoConfig = { url: 'http://localhost', options: {} };
 
 @NgModule({
     declarations: [],

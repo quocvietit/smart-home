@@ -5,14 +5,16 @@ import { map } from 'rxjs/operators';
 @Injectable()
 export class SocketService {
 
-    constructor(private socket: Socket) { }
+    constructor(private socket: Socket) { 
+    }
+
 
     sendMessage(topic: string, msg: string) {
         this.socket.emit(topic, msg);
     }
 
-    getMessage() {
+    getMessage(topic: string) {
         return this.socket
-            .fromEvent('temperature').pipe(map(data => data));
+            .fromEvent(topic).pipe(map(data => data));
     }
 }

@@ -25,18 +25,18 @@ export class HomeComponent implements OnInit, OnChanges, AfterViewInit {
     currentDate: String;
     currentTime: String;
 
-    temperature: String;
-    humidity: String;
-    light: String;
-    gas: String;
-    flashLight: String;
+    temperature: String = "0°C";
+    humidity: String = "0%";
+    light: String = "Sáng";
+    gas: String = "Không";
+    flashLight: String = "Tắt";
 
 
     constructor(
         private stringFormat: StringFormatPipe,
         private timeChartFormat: TimeChartFormatPipe,
         private analyticService: AnalyticsService,
-        private socketService: TemperatureService
+        private socketService: SocketService
 
     ) {
         setInterval(() => {
@@ -56,11 +56,63 @@ export class HomeComponent implements OnInit, OnChanges, AfterViewInit {
     ngAfterViewInit() { }
     
     init(){
-        console.log("ahihi ")
-        this.socketService.getMessage().subscribe(
+        console.log("Open socket....")
+        this.socketService.getMessage("temperature").subscribe(
             data =>{
-                this.temperature = data.toString();
+                this.temperature = data.toString() + "°C";
+            },
+            err => {
+                console.log("err: " + err);
+            }
+        );
+
+        this.socketService.getMessage("humidity").subscribe(
+            data =>{
+                this.humidity = data.toString() + "%";
+            },
+            err => {
+                console.log("err: " + err);
+            }
+        );
+
+        this.socketService.getMessage("light").subscribe(
+            data =>{
+                let value = data.toString();
+                if (value === "0"){
+                    this.light = "Sáng";
+                }else{
+                    this.light = "Tối";
+                }
                 console.log(this.temperature);
+            },
+            err => {
+                console.log("err: " + err);
+            }
+        );
+
+        this.socketService.getMessage("gas").subscribe(
+            data =>{
+                let value = data.toString();
+                if (value === "0"){
+                    this.gas = "Không";
+                }else{
+                    this.gas = "Có";
+                }
+            },
+            err => {
+                console.log("err: " + err);
+            }
+        );
+
+        this.socketService.getMessage("flashLight").subscribe(
+            data =>{
+                let value = data.toString();
+                console.log(value);
+                if (value === "0"){
+                    this.flashLight = "Tắt";
+                }else{
+                    this.flashLight= "Bật";
+                }
             },
             err => {
                 console.log("err: " + err);

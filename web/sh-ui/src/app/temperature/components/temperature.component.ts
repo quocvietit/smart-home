@@ -11,6 +11,7 @@ import { InfoDetailComponent } from '../../common/components/info-detail/info-de
 import { Observable } from 'rxjs';
 import { Temperature } from '../../common/models/temperature.model';
 import { SocketService } from 'src/app/common/services/socket.service';
+import { TemperatureService } from '../services/temperature.service';
 
 @Component({
     selector: 'temperature-component',
@@ -38,13 +39,14 @@ export class TemperatureComponent implements OnInit, OnChanges, AfterViewInit {
         private stringFormat: StringFormatPipe,
         private timeChartFormat: TimeChartFormatPipe,
         private analyticService: AnalyticsService,
-        private service: SocketService
+        private service: TemperatureService
     ) {
 
     }
 
     ngOnInit() {
         this.service.getMessage().subscribe(data => {
+            console.log("Value");
             this.currentTemperature = data.toString();
             this.chartLabels.shift();
             this.chartLabels.push(this.timeChartFormat.transFormDateToHoursAndMinutesAndSecond(new Date()).toString());

@@ -11,9 +11,14 @@ from flask import Blueprint, jsonify
 
 from services.device_type_service import DeviceTypeService
 from repositories.device_status_repository import DeviceStatusRepository
+from extenstion.socketio_core import socketio
 
 test = Blueprint(__name__, __name__, template_folder='templates')
 
+@test.route('/test/socket')
+def test_socket():
+    socketio.emit("temperature", "test")
+    return "DOne"
 
 @test.route('/test/device_type')
 def test_device_type():

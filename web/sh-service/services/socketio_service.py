@@ -15,4 +15,8 @@ class SocketIoService:
 
     @staticmethod
     def send_message(topic, message):
-        socketio.emit(topic, message)
+        print("Send")
+        try:
+            socketio.emit(topic, message)
+        except Exception as ex:
+            print (ex)
