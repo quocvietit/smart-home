@@ -8,7 +8,6 @@ export class SocketService {
     constructor(private socket: Socket) { 
     }
 
-
     sendMessage(topic: string, msg: string) {
         this.socket.emit(topic, msg);
     }

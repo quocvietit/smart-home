@@ -3,11 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ChartsModule } from 'ng2-charts';
 import { HomeComponent } from './home/components/home.component';
-import { TemperatureComponent } from './temperature/components/temperature.component';
 import { PageNotFoundComponent } from './common/components/page-not-found/page-not-found.component';
 import { LineChartComponent } from './common/components/charts/line-chart.component';
-import { InfoDetailComponent } from './common/components/info-detail/info-detail.component';
-import { HumidityComponent } from './humidity/components/humidity.component';
 import { AboutComponent } from './common/components/about/about.component';
 import { MaterialModule } from './material.module';
 import { InfoHomeComponent } from './common/components/info-home/info-home.component';
@@ -16,12 +13,14 @@ import { MonitorComponent } from './monitor/components/monitor.component';
 import { DataTableComponent } from './common/components/data-table/data-table.component';
 import { SensorInfoComponent } from './common/components/sensor-info/sensor-info.component';
 import { SocketService } from './common/services/socket.service';
-import { TemperatureService } from './temperature/services/temperature.service';
+import { MonitorService } from './monitor/services/monitor.service';
+import { TimeService } from './common/services/time.service';
+import { CommonModule } from '@angular/common';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'temperature', component: TemperatureComponent },
-  { path: 'humidity', component: HumidityComponent },
+  { path: 'temperature', component: MonitorComponent},
+  { path: 'humidity', component: MonitorService},
   { path: 'monitor', component: MonitorComponent},
   { path: 'about', component: AboutComponent},
   { path: '404', component: PageNotFoundComponent},
@@ -36,26 +35,24 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     HomeComponent,
-    TemperatureComponent,
-    HumidityComponent,
     MonitorComponent,
     AboutComponent,
     PageNotFoundComponent,
     LineChartComponent,
-    InfoDetailComponent,
     InfoHomeComponent,
     TitleComponent,
     DataTableComponent,
     SensorInfoComponent
   ],
   imports: [
+    CommonModule,
     ChartsModule,
     MaterialModule,
     RouterModule.forRoot(
       routes
     )
   ],
-  providers: [SocketService, TemperatureService],
+  providers: [SocketService, MonitorService, TimeService],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

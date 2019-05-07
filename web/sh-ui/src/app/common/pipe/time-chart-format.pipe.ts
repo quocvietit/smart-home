@@ -45,8 +45,6 @@ export class TimeChartFormatPipe implements PipeTransform {
     transFormDateToYearAndMonthAndDay(value: Date): String {
         if (!value) { return ""; }
         
-
-
         const timeValue = [
             this.formatNumber((value.getMonth()+1).toString()),
             this.formatNumber(value.getDate().toString()),

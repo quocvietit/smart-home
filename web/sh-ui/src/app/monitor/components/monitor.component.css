@@ -1,0 +1,109 @@
+.sh-time {
+    width: 900px;
+}
+
+.sh-time .time {
+    margin-top: 30px;
+    font-size: 3.5em;
+}
+
+.sh-light .row {
+    margin-left: 30px;
+}
+
+img.light-image {
+    width: 100px;
+    height: 180px;
+}
+
+.btn-light {
+    margin-top: 100px;
+    margin-right: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: springgreen;
+    border-radius: 50%;
+    border: none;
+    display: block;
+    outline: none;
+}
+
+.btn-light:hover {
+    background-color: red;
+    color: gold;
+}
+
+.btn-light:checked {
+    border: none;
+    outline: none;
+}
+
+/* Firefox old*/
+@-moz-keyframes blink {
+    0% {
+        opacity:1;
+    }
+    49% {
+        opacity: 1;
+    }
+    50% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+} 
+
+@-webkit-keyframes blink {
+    0% {
+        opacity:1;
+    }
+    49% {
+        opacity: 1;
+    }
+    50% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+}
+/* IE */
+@-ms-keyframes blink {
+    0% {
+        opacity:1;
+    }
+    49% {
+        opacity: 1;
+    }
+    50% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+} 
+/* Opera and prob css3 final iteration */
+@keyframes blink {
+    0% {
+        opacity:1;
+    }
+    49% {
+        opacity: 1;
+    }
+    50% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+} 
+.gas-image {
+    margin-left: 30px;
+    width: 200px;
+    height: 180px;
+    -moz-animation: blink normal 1s infinite ease-in-out; /* Firefox */
+    -webkit-animation: blink normal 1s infinite ease-in-out; /* Webkit */
+    -ms-animation: blink normal 1s infinite ease-in-out; /* IE */
+    animation: blink normal 1s infinite ease-in-out; /* Opera and prob css3 final iteration */
+}

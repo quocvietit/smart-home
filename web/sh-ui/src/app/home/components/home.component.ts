@@ -10,7 +10,9 @@ import { DataTableComponent } from 'src/app/common/components/data-table/data-ta
 import { initDomAdapter } from '@angular/platform-browser/src/browser';
 import { SocketService } from 'src/app/common/services/socket.service';
 import { Observable } from 'rxjs';
-import { TemperatureService } from 'src/app/temperature/services/temperature.service';
+import { Constants } from 'src/app/common/utilities/constants';
+import { TimeService } from 'src/app/common/services/time.service';
+import { TimeModel } from 'src/app/common/models/time.model';
 
 @Component({
     selector: 'home-component',
@@ -19,46 +21,45 @@ import { TemperatureService } from 'src/app/temperature/services/temperature.ser
 })
 
 export class HomeComponent implements OnInit, OnChanges, AfterViewInit {
-
     @ViewChild("InfoHomeComponent") infoHome: InfoHomeComponent;
 
-    currentDate: String;
-    currentTime: String;
+    constants = Constants;
 
+    currentDay: String = this.constants.TIME.DEFAULT.DAY;
+    currentMonth: String = this.constants.TIME.DEFAULT.MONTH;
+    currentYear: String = this.constants.TIME.DEFAULT.YEAR;
+    currentTime: String;
     temperature: String = "0°C";
     humidity: String = "0%";
     light: String = "Sáng";
     gas: String = "Không";
     flashLight: String = "Tắt";
 
-
     constructor(
         private stringFormat: StringFormatPipe,
         private timeChartFormat: TimeChartFormatPipe,
         private analyticService: AnalyticsService,
-        private socketService: SocketService
+        private socketService: SocketService,
+        private timeService: TimeService
 
     ) {
-        setInterval(() => {
-            this.getDate();
-        }, 1);
+        this.getDate();
     }
 
     ngOnInit() {
         this.init();
-        this.getDate();
     }
 
     ngOnChanges() {
-        this.getDate();
     }
 
     ngAfterViewInit() { }
-    
-    init(){
+
+    init() {
+        
         console.log("Open socket....")
         this.socketService.getMessage("temperature").subscribe(
-            data =>{
+            data => {
                 this.temperature = data.toString() + "°C";
             },
             err => {
@@ -67,7 +68,7 @@ export class HomeComponent implements OnInit, OnChanges, AfterViewInit {
         );
 
         this.socketService.getMessage("humidity").subscribe(
-            data =>{
+            data => {
                 this.humidity = data.toString() + "%";
             },
             err => {
@@ -76,11 +77,11 @@ export class HomeComponent implements OnInit, OnChanges, AfterViewInit {
         );
 
         this.socketService.getMessage("light").subscribe(
-            data =>{
+            data => {
                 let value = data.toString();
-                if (value === "0"){
+                if (value === "1") {
                     this.light = "Sáng";
-                }else{
+                } else {
                     this.light = "Tối";
                 }
                 console.log(this.temperature);
@@ -91,11 +92,11 @@ export class HomeComponent implements OnInit, OnChanges, AfterViewInit {
         );
 
         this.socketService.getMessage("gas").subscribe(
-            data =>{
+            data => {
                 let value = data.toString();
-                if (value === "0"){
+                if (value === "0") {
                     this.gas = "Không";
-                }else{
+                } else {
                     this.gas = "Có";
                 }
             },
@@ -105,13 +106,13 @@ export class HomeComponent implements OnInit, OnChanges, AfterViewInit {
         );
 
         this.socketService.getMessage("flashLight").subscribe(
-            data =>{
+            data => {
                 let value = data.toString();
                 console.log(value);
-                if (value === "0"){
+                if (value === "0") {
                     this.flashLight = "Tắt";
-                }else{
-                    this.flashLight= "Bật";
+                } else {
+                    this.flashLight = "Bật";
                 }
             },
             err => {
@@ -121,9 +122,18 @@ export class HomeComponent implements OnInit, OnChanges, AfterViewInit {
     }
 
     getDate() {
-        let time = new Date();
-        this.currentTime = this.timeChartFormat.transFormDateToHoursAndMinutesAndSecond(time);
-        this.currentDate = this.timeChartFormat.transFormDateToYearAndMonthAndDay(time)
+        this.timeService.getTime().subscribe(
+            data => {
+                let time = data as TimeModel;
+                this.currentDay = time.day;
+                this.currentMonth = time.month;
+                this.currentYear = time.year;
+                this.currentTime = time.time;
+            },
+            err => {
+                console.log("Get time error: " + err);
+            }
+        );
     }
 
 }

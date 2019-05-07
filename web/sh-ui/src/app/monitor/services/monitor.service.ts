@@ -3,7 +3,7 @@ import { Socket } from 'ngx-socket-io';
 import { map } from 'rxjs/operators';
 
 @Injectable()
-export class TemperatureService {
+export class MonitorService {
 
     constructor(private socket: Socket) { }
 
