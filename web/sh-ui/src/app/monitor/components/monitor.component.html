@@ -1,8 +1,8 @@
 <div class="containner">
   <!-- Content -->
   <div class="row">
-    <div class="row ">
-      <div class="col col-xl-6 sh-time ">
+    <div class="row" style="margin-bottom: 30px;">
+      <div class="col col-xl-6 sh-time">
         <!-- Current Time-->
         <div class="row time justify-content-md-center">
           {{currentTime}}
@@ -40,13 +40,21 @@
     <div class="row">
       <!-- Chart Temperature -->
       <div class="col col-6">
-        <line-chart-component [lineChartData]="chartData" [lineChartLabels]="chartLabels">
+        <line-chart-component 
+          [lineChartData]="temperatureData" 
+          [lineChartLabels]="temperatureLabels"
+          [lineChartOptions]="temperatureChartOptions"
+          [lineChartColors]="temperatureLineChartColor">
         </line-chart-component>
       </div>
 
       <!-- Chart Humidity-->
       <div class="col col-6">
-        <line-chart-component [lineChartData]="chartData" [lineChartLabels]="chartLabels">
+        <line-chart-component 
+        [lineChartData]="humidityData" 
+        [lineChartLabels]="humidityLabels"
+        [lineChartOptions]="humidityChartOptions"
+        [lineChartColors]="humidityLineChartColor">
         </line-chart-component>
       </div>
     </div>

@@ -13,4 +13,4 @@ if __name__ == '__main__':
     register_topic()
     from extenstion.socketio_core import socketio
     #app.run(debug=True, host=os.getenv('IP', '0.0.0.0'), port=int(os.getenv('PORT', 80)))
-    socketio.run(app, debug=True, host=os.getenv('IP', '0.0.0.0'), port=int(os.getenv('PORT', 80)))
+    socketio.run(app, debug=True, host=os.getenv('IP', '0.0.0.0'), port=int(os.getenv('PORT', 8888)))

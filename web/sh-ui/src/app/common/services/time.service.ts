@@ -17,7 +17,6 @@ export class TimeService {
 
     getCurrentTime() {
         let currentTime = new Date();
-        console.log(currentTime);
         this.time.day = this.formatTime(currentTime.getDate().toString());
         this.time.month = this.formatTime(currentTime.getMonth().toString());
         this.time.year = currentTime.getFullYear().toString();

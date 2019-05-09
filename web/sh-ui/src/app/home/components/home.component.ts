@@ -13,6 +13,7 @@ import { Observable } from 'rxjs';
 import { Constants } from 'src/app/common/utilities/constants';
 import { TimeService } from 'src/app/common/services/time.service';
 import { TimeModel } from 'src/app/common/models/time.model';
+import { HomeService } from '../services/home.service';
 
 @Component({
     selector: 'home-component',
@@ -40,14 +41,15 @@ export class HomeComponent implements OnInit, OnChanges, AfterViewInit {
         private timeChartFormat: TimeChartFormatPipe,
         private analyticService: AnalyticsService,
         private socketService: SocketService,
-        private timeService: TimeService
-
+        private timeService: TimeService,
+        private homeService: HomeService
     ) {
         this.getDate();
+        this.initData();
     }
 
     ngOnInit() {
-        this.init();
+        this.initSocket();
     }
 
     ngOnChanges() {
@@ -55,8 +57,15 @@ export class HomeComponent implements OnInit, OnChanges, AfterViewInit {
 
     ngAfterViewInit() { }
 
-    init() {
-        
+    initData(){
+        this.temperature = this.homeService.temperature + "°C";
+        this.humidity = this.homeService.temperature + "%";
+        this.setLight(this.homeService.temperature.toString());
+        this.setGas(this.homeService.isGas.toString());
+        this.setFlashLight(this.homeService.isFlashLight.toString());
+    }
+
+    initSocket() {
         console.log("Open socket....")
         this.socketService.getMessage("temperature").subscribe(
             data => {
@@ -79,12 +88,7 @@ export class HomeComponent implements OnInit, OnChanges, AfterViewInit {
         this.socketService.getMessage("light").subscribe(
             data => {
                 let value = data.toString();
-                if (value === "1") {
-                    this.light = "Sáng";
-                } else {
-                    this.light = "Tối";
-                }
-                console.log(this.temperature);
+                this.setLight(value);
             },
             err => {
                 console.log("err: " + err);
@@ -94,11 +98,7 @@ export class HomeComponent implements OnInit, OnChanges, AfterViewInit {
         this.socketService.getMessage("gas").subscribe(
             data => {
                 let value = data.toString();
-                if (value === "0") {
-                    this.gas = "Không";
-                } else {
-                    this.gas = "Có";
-                }
+                this.setFlashLight(value);
             },
             err => {
                 console.log("err: " + err);
@@ -108,12 +108,7 @@ export class HomeComponent implements OnInit, OnChanges, AfterViewInit {
         this.socketService.getMessage("flashLight").subscribe(
             data => {
                 let value = data.toString();
-                console.log(value);
-                if (value === "0") {
-                    this.flashLight = "Tắt";
-                } else {
-                    this.flashLight = "Bật";
-                }
+                this.setFlashLight(value);
             },
             err => {
                 console.log("err: " + err);
@@ -134,6 +129,30 @@ export class HomeComponent implements OnInit, OnChanges, AfterViewInit {
                 console.log("Get time error: " + err);
             }
         );
+    }
+
+    setLight(value: String){
+        if (value === "0") {
+            this.light = "Sáng";
+        } else {
+            this.light = "Tối";
+        }
+    }
+
+    setGas(value: String){
+        if (value === "0") {
+            this.gas = "Không";
+        } else {
+            this.gas = "Có";
+        }
+    }
+
+    setFlashLight(value: String){
+        if (value === "0") {
+            this.flashLight = "Tắt";
+        } else {
+            this.flashLight = "Bật";
+        }
     }
 
 }

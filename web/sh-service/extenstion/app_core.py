@@ -39,12 +39,12 @@ def init_log(xpath):
 
 def register_bluesprint(app):
     from controllers.home import home
-    from controllers.temperature_controller import temperature
+    from controllers.device_status_controller import device_status_controller
     from controllers.test_controler import test as t
     from models.device_type import DeviceType
 
     app.register_blueprint(home)
-    app.register_blueprint(temperature)
+    app.register_blueprint(device_status_controller)
     app.register_blueprint(t)
 
 

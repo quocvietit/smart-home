@@ -14,3 +14,4 @@ deploy/esp8266/test_leb/test_leb.ino
 web/sh-service/logs/
 web/sh-service/migrations/
 *.mp4
+*.rar

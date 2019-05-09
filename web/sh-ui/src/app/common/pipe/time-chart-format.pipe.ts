@@ -42,6 +42,21 @@ export class TimeChartFormatPipe implements PipeTransform {
         return time;
     }
 
+    transFormDateWithOutTimeZoneToHoursAndMinutesAndSecond(value: Date): String {
+        if (!value) { return ""; }
+        
+
+        const timeValue = [
+            this.formatNumber(value.getUTCHours().toString()),
+            this.formatNumber(value.getUTCMinutes().toString()),
+            this.formatNumber(value.getUTCSeconds().toString())
+        ];
+
+        const time = this.stringFormat.transform(this.constants.TIME.CURRENT_TIME, timeValue)
+
+        return time;
+    }
+
     transFormDateToYearAndMonthAndDay(value: Date): String {
         if (!value) { return ""; }
         

@@ -64,3 +64,7 @@ class DeviceStatus(db.Model):
             'value': self.value,
             'time': self.time
         }
+
+    @staticmethod
+    def serialize_list(l):
+        return [m.serialize() for m in l]

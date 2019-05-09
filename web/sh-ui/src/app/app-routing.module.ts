@@ -16,6 +16,9 @@ import { SocketService } from './common/services/socket.service';
 import { MonitorService } from './monitor/services/monitor.service';
 import { TimeService } from './common/services/time.service';
 import { CommonModule } from '@angular/common';
+import { HttpClient, HttpHandler, HttpClientModule } from '@angular/common/http';
+import { DeviceService } from './common/services/device.service';
+import { HomeService } from './home/services/home.service';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -46,13 +49,21 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
+    HttpClientModule,
     ChartsModule,
     MaterialModule,
     RouterModule.forRoot(
       routes
     )
   ],
-  providers: [SocketService, MonitorService, TimeService],
+  providers: [
+    HttpClient,
+    SocketService, 
+    MonitorService, 
+    TimeService,
+    HomeService,
+    DeviceService
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
