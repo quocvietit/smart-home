@@ -37,7 +37,7 @@ def handle_mqtt_message(client, userdata, message):
 
     elif topic == MQTTConfiguration.TOPIC_HUMIDITY:
         save_device(payload, 2)
-        if int(payload) >=70 or int(payload) <= 0:
+        if int(payload) >=100 or int(payload) <= 0:
             MailService.send_mail("Anomaly detection: Humidity {}%".format(payload))
         SocketIoService.send_message("humidity", payload)
 
