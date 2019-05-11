@@ -17,7 +17,7 @@ class AnalyticService:
     @staticmethod
     def analytic(data):
         res = [
-            statistics.mean(data),
+            round(statistics.mean(data), 2),
             min(data),
             max(data),
             statistics.mode(data)

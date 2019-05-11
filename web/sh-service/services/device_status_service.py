@@ -52,7 +52,7 @@ class DeviceStatusService:
         humidity_data = self.filter_data(record, 2)
         humidity_res = AnalyticService.analytic(humidity_data)
         humidity = {
-            "mean": str(humidity_res[0])[:-4],
+            "mean": str(humidity_res[0]),
             "min": str(humidity_res[1]),
             "max": str(humidity_res[2]),
             "mode": str(humidity_res[3])

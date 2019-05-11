@@ -37,7 +37,7 @@ export class MonitorService {
             }
         );
 
-        this.deviceService.getValue(3).toPromise().then(
+        this.deviceService.getValue(5).toPromise().then(
             res =>{
                 this.handleLightData(res);
             },
