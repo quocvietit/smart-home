@@ -11,7 +11,7 @@ from flask import Blueprint, jsonify, request
 
 from services.mqtt_service import MQTTService
 
-mqtt_controller = home = Blueprint(__name__, "mqtt", template_folder='templates')
+mqtt_controller = home = Blueprint(__name__, __name__, template_folder='templates')
 
 
 @mqtt_controller.route('/subscribe', methods=['POST'])

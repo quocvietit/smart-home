@@ -6,12 +6,13 @@ import { Label, Color } from 'ng2-charts';
 import { LineChartComponent } from '../../common/components/charts/line-chart.component';
 import { StringFormatPipe } from '../../common/pipe/string-format.pipe';
 import { TimeChartFormatPipe } from '../../common/pipe/time-chart-format.pipe';
-import { AnalyticsService } from '../../common/services/analytics.service';
 import { Observable } from 'rxjs';
 import { MonitorService } from '../services/monitor.service';
 import { Constants } from 'src/app/common/utilities/constants';
 import { TimeService } from 'src/app/common/services/time.service';
 import { TimeModel } from 'src/app/common/models/time.model';
+import { DeviceService } from 'src/app/common/services/device.service';
+import { SocketService } from 'src/app/common/services/socket.service';
 
 @Component({
     selector: 'monitor-component',
@@ -48,9 +49,10 @@ export class MonitorComponent implements OnInit, OnChanges, AfterViewInit {
     constructor(
         private stringFormat: StringFormatPipe,
         private timeChartFormat: TimeChartFormatPipe,
-        private analyticService: AnalyticsService,
         private monitorService: MonitorService,
-        private timeService: TimeService
+        private timeService: TimeService,
+        private deviceService: DeviceService,
+        private socketService: SocketService
     ) {
         this.configChart();
         this.getDate();
@@ -58,6 +60,7 @@ export class MonitorComponent implements OnInit, OnChanges, AfterViewInit {
 
     ngOnInit() {
         this.initData();
+        this.initSocket();
     }
 
     ngOnChanges() {
@@ -233,15 +236,48 @@ export class MonitorComponent implements OnInit, OnChanges, AfterViewInit {
 
         this.isLight = this.monitorService.isLight;
         this.isGas = this.monitorService.isGas;
+       
+    }
+
+    initSocket(){
+        this.socketService.getMessage("temperature").subscribe(data => {
+            let value = data as number;
+            this.temperatureData[0].data.push(value);
+            this.temperatureData[0].data.shift();
+            this.temperatureLabels.push(this.currentTime.toString());
+            this.temperatureLabels.shift();
+        }, err => {
+            console.log("err: " + err);
+        });
+
+        this.socketService.getMessage("humidity").subscribe(data => {
+            let value = data as number;
+            this.humidityData[0].data.push(value);
+            this.humidityData[0].data.shift();
+            this.humidityLabels.push(this.currentTime.toString());
+            this.humidityLabels.shift();
+        }, err => {
+            console.log("err: " + err);
+        });
+
+        this.socketService.getMessage("gas").subscribe(data => {
+            let value = data as number;
+            this.isGas = value == 1? true: false;
+        }, err => {
+            console.log("err: " + err);
+        });
+
+        this.socketService.getMessage("flash_light").subscribe(data => {
+            let value = data as number;
+            this.isLight = value == 1? true: false;
+        }, err => {
+            console.log("err: " + err);
+        });
     }
 
     controllLight() {
+        this.deviceService.controlLight(this.isLight).toPromise().then();
         this.isLight = !this.isLight;
-        this.isGas = !this.isGas;
-    }
-
-    private generateNumber(i: number) {
-        return Math.floor((Math.random() * (i < 2 ? 10 : 100)) + 1);
     }
 
     // events

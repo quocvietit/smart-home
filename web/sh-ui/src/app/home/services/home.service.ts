@@ -20,8 +20,7 @@ export class HomeService {
     getDataFromDatabase() {
         this.deviceService.getValue(1).toPromise().then(
             res => {
-                let data = JSON.parse(JSON.stringify(res));
-                this.temperature = data['value'];
+                this.temperature = res['value'];
             },
             err => {
                 console.log("Error get device temperature: " + err);

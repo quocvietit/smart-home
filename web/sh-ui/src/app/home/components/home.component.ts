@@ -1,15 +1,8 @@
 import { Component, OnInit, OnChanges, AfterViewInit, ViewChild } from '@angular/core';
 import { StringFormatPipe } from '../../common/pipe/string-format.pipe';
 import { TimeChartFormatPipe } from '../../common/pipe/time-chart-format.pipe';
-import { AnalyticsService } from '../../common/services/analytics.service';
-import { LineChartComponent } from '../../common/components/charts/line-chart.component';
-import { ChartDataSets } from 'chart.js';
-import { Label } from 'ng2-charts';
 import { InfoHomeComponent } from '../../common/components/info-home/info-home.component';
-import { DataTableComponent } from 'src/app/common/components/data-table/data-table.component';
-import { initDomAdapter } from '@angular/platform-browser/src/browser';
 import { SocketService } from 'src/app/common/services/socket.service';
-import { Observable } from 'rxjs';
 import { Constants } from 'src/app/common/utilities/constants';
 import { TimeService } from 'src/app/common/services/time.service';
 import { TimeModel } from 'src/app/common/models/time.model';
@@ -39,7 +32,6 @@ export class HomeComponent implements OnInit, OnChanges, AfterViewInit {
     constructor(
         private stringFormat: StringFormatPipe,
         private timeChartFormat: TimeChartFormatPipe,
-        private analyticService: AnalyticsService,
         private socketService: SocketService,
         private timeService: TimeService,
         private homeService: HomeService

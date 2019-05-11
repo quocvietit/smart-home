@@ -29,5 +29,5 @@ def test():
 from services.mail_service import  MailService
 @home.route('/unsub')
 def unsub():
-    MailService.send_mail("a","a")
+    MailService.send_mail("a")
     return "ok"

@@ -6,7 +6,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { CategoryComponent } from './common/components/category/category.component';
 import { StringFormatPipe } from './common/pipe/string-format.pipe';
 import { TimeChartFormatPipe } from './common/pipe/time-chart-format.pipe';
-import { AnalyticsService } from './common/services/analytics.service';
 import { MaterialModule } from './material.module';
 import { AppSocketIOModule } from './app-socketio.module';
 
@@ -28,8 +27,7 @@ import { AppSocketIOModule } from './app-socketio.module';
   entryComponents: [CategoryComponent],
   providers: [
     StringFormatPipe,
-    TimeChartFormatPipe,
-    AnalyticsService
+    TimeChartFormatPipe
   ],
   bootstrap: [AppComponent, CategoryComponent],
   schemas: [

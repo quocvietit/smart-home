@@ -3,7 +3,9 @@ import {
     MatAutocompleteModule,
     MatIconModule,
     MatTabsModule,
-    MatTableModule
+    MatTableModule,
+    MatFormFieldModule,
+    MatSelectModule
 } from '@angular/material';
 
 @NgModule({
@@ -12,7 +14,9 @@ import {
         MatAutocompleteModule,
         MatIconModule,
         MatTabsModule,
-        MatTableModule
+        MatTableModule,
+        MatFormFieldModule,
+        MatSelectModule
     ],
     providers: [
     ],

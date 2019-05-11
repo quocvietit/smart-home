@@ -19,12 +19,12 @@ import { CommonModule } from '@angular/common';
 import { HttpClient, HttpHandler, HttpClientModule } from '@angular/common/http';
 import { DeviceService } from './common/services/device.service';
 import { HomeService } from './home/services/home.service';
+import { AnalyticComponent } from './common/analytic/components/analytic.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'temperature', component: MonitorComponent},
-  { path: 'humidity', component: MonitorService},
   { path: 'monitor', component: MonitorComponent},
+  { path: 'analytic', component: AnalyticComponent},
   { path: 'about', component: AboutComponent},
   { path: '404', component: PageNotFoundComponent},
   {
@@ -45,7 +45,8 @@ const routes: Routes = [
     InfoHomeComponent,
     TitleComponent,
     DataTableComponent,
-    SensorInfoComponent
+    SensorInfoComponent,
+    AnalyticComponent
   ],
   imports: [
     CommonModule,
