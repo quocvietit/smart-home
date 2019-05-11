@@ -263,7 +263,7 @@ export class MonitorComponent implements OnInit, OnChanges, AfterViewInit {
             console.log("err: " + err);
         });
 
-        this.socketService.getMessage("flash_light").subscribe(data => {
+        this.socketService.getMessage("flashLight").subscribe(data => {
             let value = data as number;
             this.isLight = value == 1? true: false;
         }, err => {

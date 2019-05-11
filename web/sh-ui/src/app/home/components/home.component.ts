@@ -132,7 +132,6 @@ export class HomeComponent implements OnInit, OnChanges, AfterViewInit {
     }
 
     setGas(value: String){
-        console.log(value);
         if (value === "0") {
             this.gas = "Không";
         } else {
