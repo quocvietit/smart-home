@@ -19,7 +19,7 @@ def get_data(device_id):
     service = DeviceStatusService()
     data = service.get_data(device_id)
     print(data)
-    return jsonify(data)
+    return jsonify(data).headers.add('Access-Control-Allow-Origin', '*')
 
 
 @device_status_controller.route('/device-status/chart/<device_id>', methods=['GET'])
@@ -27,7 +27,7 @@ def get_data_chart(device_id):
     service = DeviceStatusService()
     data = service.get_data_for_chart(device_id)
 
-    return jsonify(data[::-1])
+    return jsonify(data[::-1]).headers.add('Access-Control-Allow-Origin', '*')
 
 
 @device_status_controller.route('/device-status/analytic/<time>', methods=['GET'])
@@ -35,4 +35,4 @@ def get_analytic(time):
     service = DeviceStatusService()
     data = service.get_data_for_analytic(time)
     print(type)
-    return jsonify(data)
+    return jsonify(data).headers.add('Access-Control-Allow-Origin', '*')

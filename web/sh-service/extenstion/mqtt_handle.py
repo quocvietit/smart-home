@@ -31,8 +31,9 @@ def handle_mqtt_message(client, userdata, message):
 
     if topic == MQTTConfiguration.TOPIC_TEMPERATURE:
         save_device(payload, 1)
-        if int(payload) >=40 or int(payload) <= 10:
-            MailService.send_mail("Anomaly detection: Temperature {}°C".format(payload))
+        # if int(payload) >=40 or int(payload) <= 10:
+        #     MailService.send_mail("Anomaly detection: Temperature {}°C".format(payload))
+        print("send temperature")
         SocketIoService.send_message("temperature", payload)
 
     elif topic == MQTTConfiguration.TOPIC_HUMIDITY:

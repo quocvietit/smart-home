@@ -272,8 +272,13 @@ export class MonitorComponent implements OnInit, OnChanges, AfterViewInit {
     }
 
     controllLight() {
-        this.deviceService.controlLight(this.isLight).toPromise().then();
+        this.deviceService.controlLight(this.isLight).toPromise().then(
+            data => {
+
+            }
+        );
         this.isLight = !this.isLight;
+
     }
 
     // events

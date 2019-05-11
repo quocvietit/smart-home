@@ -7,7 +7,7 @@ export class DeviceService {
     constructor(private http: HttpClient) { }
 
     getValue(id: number) {
-        return this.http.get("http://localhost:8888/device-status/" + id)
+        return this.http.get("http://192.168.43.221:8888/device-status/" + id)
             .pipe(map(this.extractData));
     }
 

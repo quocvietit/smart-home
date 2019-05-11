@@ -90,7 +90,7 @@ export class HomeComponent implements OnInit, OnChanges, AfterViewInit {
         this.socketService.getMessage("gas").subscribe(
             data => {
                 let value = data.toString();
-                this.setFlashLight(value);
+                this.setGas(value);
             },
             err => {
                 console.log("err: " + err);
@@ -132,6 +132,7 @@ export class HomeComponent implements OnInit, OnChanges, AfterViewInit {
     }
 
     setGas(value: String){
+        console.log(value);
         if (value === "0") {
             this.gas = "Không";
         } else {
