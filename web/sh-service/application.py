@@ -1,9 +1,11 @@
 from extenstion.app_core import *
 from flask_sqlalchemy import SQLAlchemy
+from flask_cors import CORS
 
 app = init_app()
 db = SQLAlchemy()
 db.init_app(app)
+cors = CORS(app)
 
 from extenstion.mqtt_handle import *
 

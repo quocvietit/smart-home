@@ -6,7 +6,7 @@ import { DeviceService } from 'src/app/common/services/device.service';
 @Injectable()
 export class MonitorService {
     temperatureData: any = [NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN] ;
-    temperatureLabel: any = [NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN];
+    temperatureLabel: any = ["", "", "", "", "", "", "", "", "", ""];
     humidityData:any = ["", "", "", "", "", "", "", "", "", ""];
     humidityLabel:any = ["", "", "", "", "", "", "", "", "", ""];
     isLight: boolean = false;
