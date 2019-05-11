@@ -15,7 +15,13 @@ mail_controller = Blueprint(__name__, __name__, template_folder='templates')
 @mail_controller.route('/mail/send/<device_id>')
 def send(device_id):
     message = "Anomaly detection: {}"
-    if int(device_id) == 4:
+    if int(device_id) == 1:
+        message = message.format("Temperature")
+
+    elif int(device_id) == 2:
+        message = message.format("Humidity")
+
+    elif int(device_id) == 4:
         message = message.format("GAS")
 
     MailService.send_mail(message)

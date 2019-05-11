@@ -31,15 +31,15 @@ def handle_mqtt_message(client, userdata, message):
 
     if topic == MQTTConfiguration.TOPIC_TEMPERATURE:
         save_device(payload, 1)
-        # if int(payload) >=40 or int(payload) <= 10:
-        #     MailService.send_mail("Anomaly detection: Temperature {}°C".format(payload))
+        if int(payload) >=40 or int(payload) <= 10:
+           notification(1)
         print("send temperature")
         SocketIoService.send_message("temperature", payload)
 
     elif topic == MQTTConfiguration.TOPIC_HUMIDITY:
         save_device(payload, 2)
         if int(payload) >=100 or int(payload) <= 0:
-            MailService.send_mail("Anomaly detection: Humidity {}%".format(payload))
+            notification(2)
         SocketIoService.send_message("humidity", payload)
 
     elif topic == MQTTConfiguration.TOPIC_LIGHT:
@@ -49,7 +49,7 @@ def handle_mqtt_message(client, userdata, message):
     elif topic == MQTTConfiguration.TOPIC_GAS:
         save_device(payload, 4)
         if int(payload) == 1:
-            MailService.send_mail("Anomaly detection: GAS")
+            notification(4)
         SocketIoService.send_message("gas", payload)
 
     elif topic == MQTTConfiguration.TOPIC_FLASH_LIGHT:
@@ -68,7 +68,6 @@ def save_device(value, device_id):
 
 def notification(device_id):
     try:
-        print(IP)
-        requests.get("http://" + IP + ":8888/mail/send/4").json()
+        requests.get("http://" + IP + ":8888/mail/send/"+device_id).json()
     except Exception as ex:
         logging.info("Request send mail error: {}".format(ex))
