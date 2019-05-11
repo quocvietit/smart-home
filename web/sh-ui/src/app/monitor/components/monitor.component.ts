@@ -32,15 +32,13 @@ export class MonitorComponent implements OnInit, OnChanges, AfterViewInit {
     temperatureChartOptions: (ChartOptions & { annotation: any });
     temperatureLineChartColor: Color[];
     temperatureData: ChartDataSets[];
-    temperatureLabels: Label[] = ['22.10', '22.11', '22.12', '22.13', '22.14', '22.15', '22.16', '22.17', '22.18', '22.19'];
+    temperatureLabels: Label[] = [];
 
 
     humidityChartOptions: (ChartOptions & { annotation: any });
     humidityLineChartColor: Color[];
-    humidityData: ChartDataSets[] = [
-        { data: [17, 20, 21, 25, 26, 26, 26, 26, 26, 26], label: this.constants.DEVICE.HUMIDITY },
-    ];
-    humidityLabels: Label[] = ['22:22:10', '22:22:10', '22:22:10', '22:22:10', '22.14', '22.15', '22.16', '22.17', '22.18', '22.19'];
+    humidityData: ChartDataSets[] = [];
+    humidityLabels: Label[] = [];
 
     statusTemperature = "Bình Thường";
 
@@ -241,9 +239,8 @@ export class MonitorComponent implements OnInit, OnChanges, AfterViewInit {
 
     initSocket(){
         this.socketService.getMessage("temperature").subscribe(data => {
-            let value = data as number;
-            this.temperatureData[0].data.push(value);
-            this.temperatureData[0].data.shift();
+            this.monitorService.temperatureData.push(data);
+            this.monitorService.temperatureData.shift();
             this.temperatureLabels.push(this.currentTime.toString());
             this.temperatureLabels.shift();
         }, err => {
@@ -251,9 +248,8 @@ export class MonitorComponent implements OnInit, OnChanges, AfterViewInit {
         });
 
         this.socketService.getMessage("humidity").subscribe(data => {
-            let value = data as number;
-            this.humidityData[0].data.push(value);
-            this.humidityData[0].data.shift();
+            this.monitorService.humidityData.push(data);
+            this.monitorService.humidityData.shift();
             this.humidityLabels.push(this.currentTime.toString());
             this.humidityLabels.shift();
         }, err => {
