@@ -19,11 +19,15 @@ def turn_on_light():
     mqtt.publish(MQTTConfiguration.TOPIC_FLASH_LIGHT_CONTROL, "1")
     mqtt.publish(MQTTConfiguration.TOPIC_FLASH_LIGHT_CONTROL, "1")
     mqtt.publish(MQTTConfiguration.TOPIC_FLASH_LIGHT_CONTROL, "1")
+    mqtt.publish(MQTTConfiguration.TOPIC_FLASH_LIGHT_CONTROL, "1")
+    mqtt.publish(MQTTConfiguration.TOPIC_FLASH_LIGHT_CONTROL, "1")
     return jsonify({"res":"ok"})
 
 
 @device_controller.route('/device/flash-light/control/off', methods=['GET'])
 def turn_off_light():
+    mqtt.publish(MQTTConfiguration.TOPIC_FLASH_LIGHT_CONTROL, "0")
+    mqtt.publish(MQTTConfiguration.TOPIC_FLASH_LIGHT_CONTROL, "0")
     mqtt.publish(MQTTConfiguration.TOPIC_FLASH_LIGHT_CONTROL, "0")
     mqtt.publish(MQTTConfiguration.TOPIC_FLASH_LIGHT_CONTROL, "0")
     mqtt.publish(MQTTConfiguration.TOPIC_FLASH_LIGHT_CONTROL, "0")
