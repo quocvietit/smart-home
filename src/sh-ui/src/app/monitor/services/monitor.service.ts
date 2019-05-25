@@ -7,7 +7,7 @@ import { DeviceService } from 'src/app/common/services/device.service';
 export class MonitorService {
     temperatureData: any = [NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN] ;
     temperatureLabel: any = ["", "", "", "", "", "", "", "", "", ""];
-    humidityData:any = ["", "", "", "", "", "", "", "", "", ""];
+    humidityData:any = [NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN];
     humidityLabel:any = ["", "", "", "", "", "", "", "", "", ""];
     isLight: boolean = false;
     isGas: boolean = false;

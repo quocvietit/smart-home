@@ -104,7 +104,7 @@ export class MonitorComponent implements OnInit, OnChanges, AfterViewInit {
                     },
                     scaleLabel: {
                         display: true,
-                        labelString: "Biểu đồ nhiệt độ thời gian thực"
+                        labelString: "Biểu đồ nhiệt độ"
                     }
                 }],
                 yAxes: [
@@ -121,7 +121,7 @@ export class MonitorComponent implements OnInit, OnChanges, AfterViewInit {
                         },
                         scaleLabel: {
                             display: true,
-                            labelString: "C"
+                            labelString: "Nhiệt độ"
                         },
                         stacked: true
                     }
@@ -169,7 +169,7 @@ export class MonitorComponent implements OnInit, OnChanges, AfterViewInit {
                     },
                     scaleLabel: {
                         display: true,
-                        labelString: "Biểu đồ độ ẩm thời gian thực"
+                        labelString: "Biểu đồ độ ẩm"
                     }
                 }],
                 yAxes: [
@@ -186,7 +186,7 @@ export class MonitorComponent implements OnInit, OnChanges, AfterViewInit {
                         },
                         scaleLabel: {
                             display: true,
-                            labelString: "%"
+                            labelString: "Độ ẩm"
                         }
                     }
                 ]
@@ -198,8 +198,8 @@ export class MonitorComponent implements OnInit, OnChanges, AfterViewInit {
 
         this.humidityLineChartColor = [
             { // dark grey
-                backgroundColor: 'rgba(77,83,96,0.2)',
-                borderColor: 'rgba(77,83,96,1)',
+                backgroundColor: 'yellow',
+                borderColor: 'black',
                 pointBackgroundColor: '#80B6F4',
                 pointBorderColor: '#80B6F4',
                 pointHoverBackgroundColor: '#80B6F4',
@@ -226,7 +226,7 @@ export class MonitorComponent implements OnInit, OnChanges, AfterViewInit {
         this.humidityData = [
             { 
                 data: this.monitorService.humidityData, 
-                label: this.constants.DEVICE.TEMPERATURE,
+                label: this.constants.DEVICE.HUMIDITY,
                 fill: "start"
             },
         ];
@@ -239,19 +239,29 @@ export class MonitorComponent implements OnInit, OnChanges, AfterViewInit {
 
     initSocket(){
         this.socketService.getMessage("temperature").subscribe(data => {
-            this.monitorService.temperatureData.push(data);
-            this.monitorService.temperatureData.shift();
-            this.temperatureLabels.push(this.currentTime.toString());
-            this.temperatureLabels.shift();
+            if(this.monitorService.temperatureData[this.monitorService.temperatureData.length-1] === data){
+                console.log("Temperature not change! " + data);
+            }else{
+                console.log("Temperature "+data);
+                this.monitorService.temperatureData.push(data);
+                this.monitorService.temperatureData.shift();
+                this.temperatureLabels.push(this.currentTime.toString());
+                this.temperatureLabels.shift();
+            }
         }, err => {
             console.log("err: " + err);
         });
 
         this.socketService.getMessage("humidity").subscribe(data => {
-            this.monitorService.humidityData.push(data);
-            this.monitorService.humidityData.shift();
-            this.humidityLabels.push(this.currentTime.toString());
-            this.humidityLabels.shift();
+            if(this.monitorService.humidityData[this.monitorService.humidityData.length-1] === data){
+                console.log("Humidity not change! " + data);
+            }else{
+                console.log("Humidity " + data);
+                this.monitorService.humidityData.push(data);
+                this.humidityLabels.push(this.currentTime.toString());
+                this.monitorService.humidityData.shift();
+                this.humidityLabels.shift();
+            }
         }, err => {
             console.log("err: " + err);
         });
@@ -278,7 +288,6 @@ export class MonitorComponent implements OnInit, OnChanges, AfterViewInit {
             }
         );
         this.isLight = !this.isLight;
-
     }
 
     // events

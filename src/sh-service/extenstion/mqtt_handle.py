@@ -31,16 +31,17 @@ def handle_mqtt_message(client, userdata, message):
 
     if topic == MQTTConfiguration.TOPIC_TEMPERATURE:
         save_device(payload, 1)
-        if int(payload) >=40 or int(payload) <= 10:
-           notification(1)
-        print("send temperature")
         SocketIoService.send_message("temperature", payload)
+        if int(payload) >= 40 or int(payload) <= 10:
+            logging.info("send mail: temperature")
+            notification(1)
 
     elif topic == MQTTConfiguration.TOPIC_HUMIDITY:
         save_device(payload, 2)
-        if int(payload) >=100 or int(payload) <= 0:
-            notification(2)
         SocketIoService.send_message("humidity", payload)
+        if int(payload) >= 100 or int(payload) <= 0:
+            logging.info("send mail: Humidity")
+            notification(2)
 
     elif topic == MQTTConfiguration.TOPIC_LIGHT:
         save_device(payload, 3)
@@ -48,9 +49,10 @@ def handle_mqtt_message(client, userdata, message):
 
     elif topic == MQTTConfiguration.TOPIC_GAS:
         save_device(payload, 4)
-        if int(payload) == 1:
-            notification(4)
         SocketIoService.send_message("gas", payload)
+        if int(payload) == 1:
+            logging.info("send mail: GAS")
+            notification(4)
 
     elif topic == MQTTConfiguration.TOPIC_FLASH_LIGHT:
         save_device(payload, 5)

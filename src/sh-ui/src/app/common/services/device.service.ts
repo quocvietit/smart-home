@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { TimeModel } from '../models/time.model';
 import { Temperature } from '../models/temperature.model';
+import { Device } from '../models/device.model';
 
 @Injectable()
 export class DeviceService {
@@ -11,7 +12,7 @@ export class DeviceService {
 
     getValue(id: number) {
         return this.http.get("http://"+this.uri+":8888/device-status/" + id)
-            .pipe(map(item => new Temperature(item)));
+            .pipe(map(item => new Device(item)));
     }
 
     getValueForChart(id: number) {

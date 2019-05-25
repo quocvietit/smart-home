@@ -36,31 +36,31 @@ export class HomeService {
             }
         );
 
-        // this.deviceService.getValue(3).toPromise().then(
-        //     res => {
-        //         this.isLight = res['value'] === "0"?false: true;
-        //     },
-        //     err => {
-        //         console.log("Error get device light: " + err);
-        //     }
-        // );
+        this.deviceService.getValue(3).toPromise().then(
+            res => {
+                this.isLight = res['value'] === "0"?false: true;
+            },
+            err => {
+                console.log("Error get device light: " + err);
+            }
+        );
 
-        // this.deviceService.getValue(4).toPromise().then(
-        //     res => {
-        //         this.isGas = res['value'] === "0"?false: true;
-        //     },
-        //     err => {
-        //         console.log("Error get device light: " + err);
-        //     }
-        // );
+        this.deviceService.getValue(4).toPromise().then(
+            res => {
+                this.isGas = res['value'] === "0"?false: true;
+            },
+            err => {
+                console.log("Error get device light: " + err);
+            }
+        );
 
-        // this.deviceService.getValue(5).toPromise().then(
-        //     res => {
-        //         this.isFlashLight = res['value'] === "0"?false: true;
-        //     },
-        //     err => {
-        //         console.log("Error get device light: " + err);
-        //     }
-        // );
+        this.deviceService.getValue(5).toPromise().then(
+            res => {
+                this.isFlashLight = res['value'] === "0"?false: true;
+            },
+            err => {
+                console.log("Error get device light: " + err);
+            }
+        );
     }
 }

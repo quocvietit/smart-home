@@ -30,7 +30,7 @@ class AnalyticService:
     def analytic_2(data):
         res = [
             sum(data),
-            sum(data)/len(data)
+            int(sum(data))/len(data)
         ]
 
         return res

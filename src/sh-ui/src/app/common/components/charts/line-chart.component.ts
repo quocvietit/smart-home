@@ -34,4 +34,11 @@ export class LineChartComponent implements OnInit, OnChanges, OnDestroy, AfterVi
         this.chart.update();
     }
 
+    public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
+        //console.log(event, active);
+    }
+
+    public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
+        //console.log(event, active);
+    }
 }

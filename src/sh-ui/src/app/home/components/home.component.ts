@@ -55,30 +55,25 @@ export class HomeComponent implements OnInit, OnChanges, AfterViewInit {
     ngAfterViewInit() { }
 
     initData(){
-        
-        // this.deviceService.getValue(1).toPromise().then((res: any) => {
-        // });
-        // this.temperature = this.model.day;
-        // this.deviceService.getValue(1).toPromise().then((res: any) => {
-        //     this.temperature = res.value + "°C";
-        // });  this.deviceService.getValue(2).toPromise().then((res: any) => {
-        //     this.humidity = res.value + "°C";
-        // })
-        // this.deviceService.getValue(3).toPromise().then((res: any) => {
-        //     this.setLight(res.value.toString());
-        // });
-        // this.deviceService.getValue(4).toPromise().then((res: any) => {
-        //     this.setGas(res.value.toString());
-        // });
-        // this.deviceService.getValue(5).toPromise().then((res: any) => {
-        //     this.setFlashLight(res.value.toString());
-        // });
+        this.deviceService.getValue(1).toPromise().then((res: any) => {
+            this.temperature = res.value + "°C";
+        });
+ 
+        this.deviceService.getValue(2).toPromise().then((res: any) => {
+            this.humidity = res.value + "%";
+        })
 
-        // this.temperature = this.homeService.temperature + "°C";
-        // this.humidity = this.homeService.temperature + "%";
-        // this.setLight(this.homeService.temperature.toString());
-        // this.setGas(this.homeService.isGas.toString());
-        // this.setFlashLight(this.homeService.isFlashLight.toString());
+        this.deviceService.getValue(3).toPromise().then((res: any) => {
+            this.setLight(res.value.toString());
+        });
+
+        this.deviceService.getValue(4).toPromise().then((res: any) => {
+            this.setGas(res.value.toString());
+        });
+
+        this.deviceService.getValue(5).toPromise().then((res: any) => {
+            this.setFlashLight(res.value.toString());
+        });
     }
 
     initSocket() {
@@ -148,7 +143,7 @@ export class HomeComponent implements OnInit, OnChanges, AfterViewInit {
     }
 
     setLight(value: String){
-        if (value === "0") {
+        if (value === "1") {
             this.light = "Sáng";
         } else {
             this.light = "Tối";
