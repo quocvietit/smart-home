@@ -13,7 +13,7 @@ DHT dht(DHTPIN, DHTTYPE);
 // Update these with values suitable for your network.
 #define ledPin 14
 #define lightsensor 5
-#define gassensor 4
+#define intensity A0
 
 
 const char* ssid = "NOVA P3";
@@ -118,11 +118,10 @@ void loop() {
     reconnect();
   }
   client.loop();
-
   long now = millis();
   if (now - lastMsg > 2000) {
     lastMsg = now;
-    //light
+    //cam bien anh sang
     int val = analogRead(lightsensor);
     String msg;
     // msg= msg+ val;
@@ -135,32 +134,29 @@ void loop() {
     Serial.println(message);
     client.publish("LIVINGROOM/LIGHT", message);
 
-    //gas
+    //khi gas
 
-    int val2 = analogRead(gassensor);
+    int val2 = analogRead(intensity);
     String msg2;
-    // msg2= msg2+ val2;
-    if (val2 < 50)
+    String msg22;
+    msg22 = msg22 + val2;
+    if (val2 < 500)
       msg2 = "0";
     else
       msg2 = "1";
     char message2[58];
+    char message22[58];
     msg2.toCharArray(message2, 58);
+    msg22.toCharArray(message22, 58);
     Serial.println(message2);
+    Serial.println(message22);
     client.publish("LIVINGROOM/GAS", message2);
+    client.publish("LIVINGROOM/GAS2", message22);
 
     //nhiet do, do am
     int h = dht.readHumidity();
     // Read temperature as Celsius (the default)
     float t = dht.readTemperature();
-    // Read temperature as Fahrenheit (isFahrenheit = true)
-    /*float f = dht.readTemperature(true);
-
-      // Check if any reads failed and exit early (to try again).1
-      if (isnan(h) || isnan(t) || isnan(f)) {
-      Serial.println(F("Failed to read from DHT sensor!"));
-      return;
-      }*/
     char message5[58];
     String msg5;
     msg5 = msg5 + h;
@@ -175,17 +171,12 @@ void loop() {
     Serial.println(message4);
     client.publish("LIVINGROOM/TEMPERATURE", message4);
 
-    //ledpin
+    //doc trang thai den led
     if ( digitalRead(ledPin) )
 
       client.publish("LIVINGROOM/FLASH_LIGHT", "1");
     else
       client.publish("LIVINGROOM/FLASH_LIGHT", "0");
-
-
-
   }
-  //Serial.println(WiFi.localIP());
-  //client.subscribe("LIVINGROOM/FLASH_LIGHT/CONTROL");
-  delay(2000);
+  delay(5000);
 }
