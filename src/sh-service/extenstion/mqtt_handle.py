@@ -68,6 +68,6 @@ def save_device(value, device_id):
 
 def notification(device_id):
     try:
-        requests.get("http://" + IP + ":8888/mail/send/"+device_id).json()
+        requests.get("http://" + str(IP) + ":8888/mail/send/"+str(device_id)).json()
     except Exception as ex:
         logging.info("Request send mail error: {}".format(ex))
