@@ -1,0 +1,13 @@
+.info-home{
+    width: 100%;
+    margin: 20px;
+}
+
+.info-home .row .sh-value{
+    text-align: center;
+}
+
+.info-home .room-name{
+    margin-bottom: 15px;
+    color: #0099FF;
+}

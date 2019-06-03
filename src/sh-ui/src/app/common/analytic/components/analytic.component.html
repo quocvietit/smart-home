@@ -1,0 +1,77 @@
+<div class="container-fluid">
+    <div class="row justify-content-md-center">
+        <div>
+            <mat-form-field>
+                <mat-select placeholder="Select Time" [(value)]="selected">
+                    <mat-option value="1">1 Hour</mat-option>
+                    <mat-option value="6">6 Hour</mat-option>
+                    <mat-option value="24">Day</mat-option>
+                    <mat-option value="168">Week</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="btn-load">
+            <button mat-raised-button class="btn-load" (click)="getData()">
+                Load
+            </button>
+        </div>
+    </div>
+    <div class="row" *ngIf="isError">Không tìm thấy dữ liệu</div>
+    <div *ngIf="!isError && isLoad">
+        <div class="row">
+            <div class="col col-4">
+
+            </div>
+            <div class="col col-3">
+                Nhiệt độ (°C)
+            </div>
+            <div class="col col-3">
+                Độ ẩm (%)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-4">
+                Trung bình:
+            </div>
+            <div class="col col-3">
+                {{temperature.mean}}
+            </div>
+            <div class="col col-3">
+                {{humidity.mean}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-4">
+                Thấp nhất:
+            </div>
+            <div class="col col-3">
+                {{temperature.min}}
+            </div>
+            <div class="col col-3">
+                {{humidity.min}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-4">
+                Cao nhất:
+            </div>
+            <div class="col col-3">
+                {{temperature.max}}
+            </div>
+            <div class="col col-3">
+                {{humidity.max}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-4">
+                Thường xuyên nhất:
+            </div>
+            <div class="col col-3">
+                {{temperature.mode}}
+            </div>
+            <div class="col col-3">
+                {{humidity.mode}}
+            </div>
+        </div>
+    </div>
+</div>

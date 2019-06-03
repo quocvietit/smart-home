@@ -1,0 +1,13 @@
+.sh-sensor{
+    border-style: outset;
+    max-width: 200px;
+    margin-right: 10px;
+    padding: 10px;
+    min-width: 150px;
+    min-height: 100px;
+}
+
+.sh-sensor-value{
+    text-align: center;
+    size: 5em;
+}
